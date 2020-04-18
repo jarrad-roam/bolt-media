@@ -1,0 +1,1 @@
+`mount_strage.sh` is a script that needs to be ran before docker compose, this is to mount my network shared storage to the local fs, which is mounted as a volume in docker

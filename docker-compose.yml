@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  #Jellyfin (Media Server)
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: "jellyfin"
+    volumes:
+      - ./jellyfin-config:/config
+      - ./jellyfin-cache:/cache
+      - ./media-storage/Movies:/movies
+      - ./media-storage/Episodes:/episodes
+    ports:
+      - "8096:8096"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Pacific/Auckland
+    restart: always
+
+  # Portainer (Container Manager via Browser)
+  portainer:
+    image: portainer/portainer
+    restart: always
+    container_name: "portainer-app"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer-data:/data
+    ports:
+      - 9000:9000
+
+  watchtower:
+    image: v2tec/watchtower
+    container_name: "portainer-watchtower"
+    command: --cleanup portainer-app portainer-watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
