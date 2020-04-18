@@ -43,3 +43,7 @@ Note: This assumes ssh server, git, docker, docker-compose are already setup on 
 1. Navigate to `bolt.home:8096` in a browser, and configure Jellyfin
 1. Navigate to `bolt.home:9000` in a browser, and configure Portainer
 1. Navigate to `bolt.home:8112` in a browser, and configure Deluge
+1. Navigate to `bolt.home:9117` in a browser, and configure Jackett
+1. Navigate to `bolt.home:8989` in a browser, and configure Sonarr
+1. Navigate to `bolt.home:7878` in a browser, and configure Radarr
+1. Navigate to `bolt.home:3579` in a browser, and configure Ombi
