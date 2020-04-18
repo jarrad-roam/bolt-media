@@ -48,7 +48,7 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.rule=Host(`delgue.bolt`)"
+      - "traefik.http.routers.delgue.rule=Host(`deluge.bolt`)"
 
   # Portainer (Container Manager via Browser)
   portainer:
