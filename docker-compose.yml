@@ -41,6 +41,10 @@ services:
       - OPENVPN_PROVIDER=NORDVPN
       - OPENVPN_CONFIG=al10.nordvpn.com.tcp
       - LOCAL_NETWORK=10.0.0.0/24
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
     restart: always
     labels:
       - "traefik.enable=true"
