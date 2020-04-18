@@ -40,8 +40,8 @@ services:
       - TZ=Pacific/Auckland
       - OPENVPN_PROVIDER=NORDVPN
       - OPENVPN_CONFIG=al10.nordvpn.com
-      - OPENVPN_USERNAME=$NORD_USER
-      - OPENVPN_PASSWORD=$NORD_PASS
+      - OPENVPN_USERNAME=${NORD_USER}
+      - OPENVPN_PASSWORD=${NORD_PASS}
       - LOCAL_NETWORK=10.0.0.0/24
     restart: always
     labels:
