@@ -17,6 +17,8 @@ services:
       - PGID=1000
       - TZ=Pacific/Auckland
     restart: always
+    labels:
+      - "traefik.http.routers.jackett.rule=Host(`jellyfin.${DOMAIN}`)"
 
   # Portainer (Container Manager via Browser)
   portainer:
@@ -33,5 +35,16 @@ services:
     image: v2tec/watchtower
     container_name: "portainer-watchtower"
     command: --cleanup portainer-app portainer-watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  #Traefik reverse proxy
+  traefik:
+    image: traefik:v2.0
+    container_name: traefik
+    command: --api --providers.docker
+    ports:
+      - "80:80" # The HTTP port
+      - "9090:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

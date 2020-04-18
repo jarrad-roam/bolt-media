@@ -1,1 +1,7 @@
 .idea
+
+!.keep
+
+jellyfin-cache
+media-storage
+portainer-data
