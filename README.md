@@ -27,8 +27,8 @@ Note, both options require: nfs-common, cifs-utils
 #Deluge VPN Credentials
 1. Create a credentials file `.vpn` contents:
    ```
-   NORD_USER=<Username>
-   NORD_PASS=<Password>
+   OPENVPN_USERNAME=<Username>
+   OPENVPN_PASSWORD=<Password>
    ```
 1. Change the permissions of the file `chmod 600 .vpn`
 
