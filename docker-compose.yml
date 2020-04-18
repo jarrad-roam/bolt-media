@@ -21,6 +21,33 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.bolt`)"
 
+  # Delgue with OpenVPN
+  deluge:
+    image: sgtsquiggs/deluge-openvpn
+    container_name: "delgue"
+    env_file:
+      - .vpn
+    volumes:
+      - ./delgue-config:/config
+      - ./media-storage/Downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8112:8112"
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - UMASK_SET=022
+      - TZ=Pacific/Auckland
+      - OPENVPN_PROVIDER=NORDVPN
+      - OPENVPN_CONFIG=al10.nordvpn.com
+      - OPENVPN_USERNAME=$NORD_USER
+      - OPENVPN_PASSWORD=$NORD_PASS
+      - LOCAL_NETWORK=10.0.0.0/24
+    restart: always
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jellyfin.rule=Host(`delgue.bolt`)"
+
   # Portainer (Container Manager via Browser)
   portainer:
     image: portainer/portainer
