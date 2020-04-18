@@ -18,6 +18,7 @@ services:
       - TZ=Pacific/Auckland
     restart: always
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.bolt`)"
 
   # Portainer (Container Manager via Browser)
@@ -31,6 +32,7 @@ services:
     ports:
       - 9000:9000
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.bolt`)"
 
   watchtower:
@@ -42,11 +44,15 @@ services:
 
   #Traefik reverse proxy
   traefik:
-    image: traefik:v2.0
+    image: traefik:v2.2
     container_name: traefik
-    command: --api --providers.docker
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
-      - "80:80" # The HTTP port
-      - "9090:8080" # The Web UI (enabled by --api)
+      - "80:80"
+      - "9090:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
