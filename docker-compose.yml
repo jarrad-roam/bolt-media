@@ -30,21 +30,23 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer-data:/data
     ports:
-      - 9000:9000
+      - "9000:9000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.bolt`)"
 
   watchtower:
     image: v2tec/watchtower
+    restart: always
     container_name: "portainer-watchtower"
     command: --cleanup portainer-app portainer-watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  #Traefik reverse proxy
+  #Traefik reverse proxy e.g. jellyfin.bolt -> localhost:8096
   traefik:
     image: traefik:v2.2
+    restart: always
     container_name: traefik
     command:
       - "--api.insecure=true"

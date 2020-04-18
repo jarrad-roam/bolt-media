@@ -17,3 +17,8 @@ Note: This assumes ssh server, git, docker, docker-compose are already setup on 
 1. Run `docker-compose up -d`
 1. Navigate to `bolt.home:8096` in a browser, and configure Jellyfin
 1. Navigate to `bolt.home:9000` in a browser, and configure Portainer
+
+
+TODO:
+
+Setup for Mounting & Launch Docker-Compose on boot
