@@ -18,7 +18,7 @@ services:
       - TZ=Pacific/Auckland
     restart: always
     labels:
-      - "traefik.http.routers.jackett.rule=Host(`jellyfin.${DOMAIN}`)"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.bolt`)"
 
   # Portainer (Container Manager via Browser)
   portainer:
@@ -30,6 +30,8 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
+    labels:
+      - "traefik.http.routers.portainer.rule=Host(`portainer.bolt`)"
 
   watchtower:
     image: v2tec/watchtower
