@@ -48,7 +48,7 @@ services:
       - .vpn-servers
     volumes:
       - ./deluge-config:/config
-      - ./deluge-config/nordvpn:/etc/openvpn/nordvpn
+#      - ./deluge-config/nordvpn:/etc/openvpn/nordvpn
       - ./media-storage/Downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
     ports:
