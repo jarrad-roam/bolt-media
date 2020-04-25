@@ -35,12 +35,7 @@ Note, both options require: nfs-common, cifs-utils
 #Deluge Configure VPN Server List
 1. `cd ./deluge-config`
 1. `wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip`
-1. `unzip ovpn.zip`
-1. `mv ovpn_tcp nord-tcp`
-1. `rm -rf ovpn_udp`
-1. `rm ovpn.zip`
-1. `cd ../`
-1. `echo OPENVPN_CONFIG=$(ls deluge-config/nord-tcp | grep nz | sed 's/.....$//' | tr '\n' ',' | sed 's/.$//') > .vpn-servers`
+1. `unzip ovpn.zip && mv ovpn_tcp nordvpn && mv ovpn_udp/* nordvpn && rm ovpn_udp -d && rm ovpn.zip`
 
 
 #How to setup on Udoo Bolt
