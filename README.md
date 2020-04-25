@@ -40,7 +40,7 @@ Note, both options require: nfs-common, cifs-utils
 1. `rm -rf ovpn_udp`
 1. `rm ovpn.zip`
 1. `cd ../`
-1. `echo OPENVPN_CONFIG=$(ls deluge-config/nord-tcp | grep nz | tr '\n' ',' | sed 's/.$//') >> .vpn`
+1. `echo OPENVPN_CONFIG=$(ls deluge-config/nord-tcp | grep nz | sed 's/.....$//' | tr '\n' ',' | sed 's/.$//') > .vpn-servers`
 
 
 #How to setup on Udoo Bolt

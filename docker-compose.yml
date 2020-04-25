@@ -45,6 +45,7 @@ services:
     container_name: "delgue"
     env_file:
       - .vpn
+      - .vpn-servers
     volumes:
       - ./deluge-config:/config
       - ./deluge-config/nord-tcp:/etc/openvpn/nordvpn
