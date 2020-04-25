@@ -46,7 +46,8 @@ services:
     env_file:
       - .vpn
     volumes:
-      - ./delgue-config:/config
+      - ./deluge-config:/config
+      - ./deluge-config/nord-tcp:/etc/openvpn/ovpn
       - ./media-storage/Downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -60,7 +61,6 @@ services:
       - UMASK_SET=022
       - TZ=Pacific/Auckland
       - OPENVPN_PROVIDER=NORDVPN
-      - OPENVPN_CONFIG=nz25.nordvpn.com.tcp
       - LOCAL_NETWORK=10.0.0.0/24
     devices:
       - /dev/net/tun:/dev/net/tun
