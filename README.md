@@ -32,10 +32,14 @@ Note, both options require: nfs-common, cifs-utils
    ```
 1. Change the permissions of the file `chmod 600 .vpn`
 
-#Deluge Configure VPN Server List
+#Deluge Configure VPN Server List (or remove the :/etc/openvpn/nordvpn mounting, which will use the default installed vpn configs)
 1. `cd ./deluge-config`
 1. `wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip`
 1. `unzip ovpn.zip && mv ovpn_tcp nordvpn && mv ovpn_udp/* nordvpn && rm ovpn_udp -d && rm ovpn.zip`
+1. remove blank `auth-user-pass` line from .ovpn files `sed -i '/auth-user-pass/d' *.ovpn`
+1. add `auth-user-pass /config/openvpn-credentials.txt` to the end of each .ovpn file `sed -i '1iauth-user-pass /config/openvpn-credentials.txt' *.ovpn`
+
+Note: may still be useful `echo OPENVPN_CONFIG=$(ls deluge-config/nordvpn | grep nz | sed 's/.....$//' | tr '\n' ',' | sed 's/.$//') > .vpn-servers`
 
 
 #How to setup on Udoo Bolt
